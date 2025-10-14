@@ -1,6 +1,6 @@
 # 4.3 MyISAM 스토리지 엔진 아키텍쳐
 
-![image.png](./img/image 22.png)
+![image.png](./img/image22.png)
 
 ## 4.3.1 키 캐시
 
@@ -9,7 +9,7 @@
     - 인덱스의 디스크 쓰기 작업에 대해서만 부분적으로 버퍼링 역할
 - 기본 키 캐시말고 사용하라면, 만들고 지정을 해줘야 함
 
-![image.png](./img/image 23.png)
+![image.png](./img/image23.png)
 
 ## 4.3.2 운영체제의 캐시 및 버퍼
 

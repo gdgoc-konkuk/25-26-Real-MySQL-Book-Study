@@ -10,7 +10,7 @@
 
 - 슬로우 쿼리 로그 파일에는 `long_query_time` 이상의 시간이 소요된 쿼리가 모두 기록
 
-![image.png](./img/image 24.png)
+![image.png](./img/image24.png)
 
 → 그래서 `Rows_sent`가 큰데 `Rows_examined`가 상당히 적다면, 더 적은 레코드만 접근하도록 튜닝해 볼 가치가 있음(GROUP_BY 나 COUNT().. 뭐 이런 집합 함수가 아닌 쿼리만 해당)
 
@@ -19,12 +19,12 @@
   → Percona에서 개발한 Percona Toolkit `pt-query-digest` 쿼리 이용
 
 
-![image.png](./img/image 25.png)
+![image.png](./img/image25.png)
 
 ### 4.4.3.1 슬로우 쿼리 통계
 
-![image.png](./img/image 26.png)
+![image.png](./img/image26.png)
 
 ### 4.4.3.2 실행 빈도 및 누적 실행 시간순 랭킹
 
-![image.png](./img/image 27.png)
+![image.png](./img/image27.png)

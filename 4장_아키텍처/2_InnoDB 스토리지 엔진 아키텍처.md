@@ -6,7 +6,7 @@
 
 [InnoDB구조]
 
-![image.png](./img/image 9.png)
+![image.png](./img/image9.png)
 
 ## 4.2.1 프라이머리 키에 의한 클러스터링
 
@@ -43,7 +43,7 @@
 
   [InnoDB의 버퍼 풀과 데이터 파일의 상태]
 
-  ![image.png](./img/image 10.png)
+  ![image.png](./img/image10.png)
 
     ```sql
     mysql> UPDATE member SET m_area='경기' WHERE m_id=12;
@@ -51,7 +51,7 @@
 
   [Update 후 InnoDB 버퍼 풀과 데이터 파일 및 언두 영역의 변화]
 
-  ![image.png](./img/image 11.png)
+  ![image.png](./img/image11.png)
 
     - 커밋 실행 여부와 관계없이 InnDB의 버퍼 풀은 새로운 값인 ‘경기’로 업데이트 됨
     - 커밋이나 롤백이 안된 상태로 조회를 하게 된다면?
@@ -86,7 +86,7 @@
 - InnoDB 스토리지 엔진은 MVCC 기술을 이용해 잠금을 걸지 않고 읽기 작업을 수행함
 - 격리 수준이 SERIALIZABLE이 아닌 READ_UNCOMMITTED나 READ_COMMITTED, REPEATABE_READ 수준인 경우 INSERT와 연결되지 않은 순수한 읽기 (SELECT)작업은 다른 트랜잭션의 변경 작업과 관계없이 바로 실행
 
-  ![image.png](./img/image 12.png)
+  ![image.png](./img/image12.png)
 
 
 ## 4.2.5 자동 데드락 감지
@@ -134,7 +134,7 @@ InnoDB 스토리지 엔진은 버퍼 풀이라는 거대한 메모리 공간을 
         4. 버퍼 풀에 상주하는 데이터 페이지는 사용자 쿼리가 얼마나 최근에 접근했는지에 따라 나이(Age)가 부여되며, 버퍼 풀에 상주하는 동안 쿼리에서 오랫동안 사용되지 않으면 데이터 페이지에 부여된 나이가 오래되고(‘Aging’이라고 함) 결국 해당 페이지는 버퍼 풀에서 제거된다. 버퍼 풀의 데이터 페이지가 쿼리에 의해 사용되면 나이가 초기화되어 다시 젊어지고 MRU의 헤더 부분으로 옮겨진다.
         5. 필요한 데이터가 자주 접근됐다면 해당 페이지의 인덱스 키를 어댑티브 해시 인덱스에 추가
 
-  ![image.png](./img/image 13.png)
+  ![image.png](./img/image13.png)
 
     - Flush 리스트
         - 디스크로 동기화되지 않은 데이터를 가진 데이터 페이지의 변경 시점 기준의 페이지 목록을 관리
@@ -150,7 +150,7 @@ InnoDB 스토리지 엔진은 버퍼 풀이라는 거대한 메모리 공간을 
 
 - 버퍼 풀은 디스크에서 읽은 상태로 전혀 변경이 안된 Clean page와 Insert, Delete, Update 명령으로 변경된 데이터를 가진 Dirty Page가 있음x
 
-![image.png](./img/image 14.png)
+![image.png](./img/image14.png)
 
 1️⃣ 리두 로그(Redo Log)의 기본 개념
 
@@ -194,7 +194,7 @@ InnoDB는 버퍼 풀의 더티 페이지와 리두 로그를 **LSN으로 연결�
 
 (다양한 시스템 변수)
 
-![image.png](./img/image 15.png)
+![image.png](./img/image15.png)
 
 **4.2.7.4.2 LRU 리스트 플러시**
 
@@ -218,7 +218,7 @@ InnoDB는 버퍼 풀의 더티 페이지와 리두 로그를 **LSN으로 연결�
   → Double Wirte Buffer로 해결
 
 
-![image.png](./img/image 16.png)
+![image.png](./img/image16.png)
 
 - 묶어서 DoubleWrite 버퍼에 기록
     - DoubleWrite 버퍼의 내용은 실제 데이터 파일의 쓰기가 중간에 실패할 때만 원래의 목적으로 사용됨
@@ -235,7 +235,7 @@ InnoDB는 버퍼 풀의 더티 페이지와 리두 로그를 **LSN으로 연결�
     2. 트랜잭션이 오랜 시간동안 실행될 때
         - 트랜잭션이 완료됐다고 언두로그 바로 삭제하는건 아님
 
-       ![image.png](./img/image 17.png)
+       ![image.png](./img/image17.png)
 
         - 언두로그의 용량이 커졌다고 문제가 안될 수는 있지만, 커지만큼 스캔해야될 데이터가 많아서 쿼리 성능이 떨어짐
 - 5.5 버전은 언두로그가 한번 크기가 증가하면 못 줄였지만, 8.0부터는 순차적으로 줄이는 것이 가능해짐
@@ -248,11 +248,11 @@ SELECT count
     WHERE SUBSYSTEM='transaction' AND NAME='trx_rseg_history_len';
 ```
 
-![image.png](./img/image 18.png)
+![image.png](./img/image18.png)
 
 ### 4.2.9.2 언두 테이블스페이스 관리
 
-![image.png](./img/image 19.png)
+![image.png](./img/image19.png)
 
 **최대 동시 트랜잭션 수** = (InnoDB 페이지 크기) /16 * (롤백 세그먼트 개수) * (언두 테이블스페이스 개수)
 
@@ -283,7 +283,7 @@ SELECT EVENT_NAME, CURRENT_NUMBER_OF_BYTES_USED
     WHERE EVENT_NAME='memory/innodb/ibuf0ibuf';
 ```
 
-![image.png](./img/image 20.png)
+![image.png](./img/image20.png)
 
 ## 4.2.11 리두 로그 및 로그 버퍼
 
@@ -312,7 +312,7 @@ SELECT EVENT_NAME, CURRENT_NUMBER_OF_BYTES_USED
       → 버퍼 풀에 올려진 데이터 페이지에 대해서만 관리
 
 
-![image.png](./img/image 21.png)
+![image.png](./img/image21.png)
 
 - 해시 인덱스가 성능 향상에 도움 안되는 경우
     - 디스크 읽기가 많은 경우

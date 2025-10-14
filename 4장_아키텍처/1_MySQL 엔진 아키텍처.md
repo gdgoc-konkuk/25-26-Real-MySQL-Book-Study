@@ -12,7 +12,7 @@
 SHOW GLOBAL STATUS LIKE 'Handler%';
 ```
 
-![image.png](./img/image 1.png)
+![image.png](./img/image1.png)
 
 > 핸들러 API를 통해 얼마나 많은 데이터(레코드) 작업이 있었는지 확인
 >
@@ -28,7 +28,7 @@ SELECT thread_id, name, type, processlist_user, processlist_host FROM performanc
 
 [실행 중인 스레드의 목록]
 
-![image.png](./img/image 2.png)
+![image.png](./img/image2.png)
 
 - ***/one-connectioin → 이 부분이 실제 사용자의 요청을 처리하는 포그라운드 스레드
 - `toock_user` 계정은 한 번 생성된 하나의 계정이고
@@ -80,7 +80,7 @@ MyISAM테이블은 별로 해당 x, InnoDB는 여러 작업이 백그라운드 �
 
 ## 4.1.3 메모리 할당 및 사용 구조
 
-![image.png](./img/image 3.png)
+![image.png](./img/image3.png)
 
 
 - MySQL의 시스템 변수로 설정해 둔만큼 운영체제로부터 메모리를 할당받음
@@ -118,13 +118,13 @@ MyISAM테이블은 별로 해당 x, InnoDB는 여러 작업이 백그라운드 �
 
 ## 4.1.4 플러그인 스토리지 엔진 모델
 
-![image.png](./img/image 4.png)
+![image.png](./img/image4.png)
 
 - 스토리지 엔진만 플러그인해서 사용하는 것만은 아님
 - 많은 스토리지 엔진을 가지고 있지만, 부가적인 기능을 제공하는 스토리지 엔진을 필요로 할 수 있음
     - 다른 전문 개발 회사, 사용자가 직접 스토리지 엔진을 개발하는 것도 가능
 
-![image.png](./img/image 5.png)
+![image.png](./img/image5.png)
 
 - 대부분 작업 - MySQL엔진
 - 데이터 읽기/쓰기 - 스토리지 엔진
@@ -136,7 +136,7 @@ MyISAM테이블은 별로 해당 x, InnoDB는 여러 작업이 백그라운드 �
 
 MySQL서버에서 지원되는 스토리지 엔진
 
-![image.png](./img/image 6.png)
+![image.png](./img/image6.png)
 
 - Support
 
@@ -153,7 +153,7 @@ MySQL서버에서 지원되는 스토리지 엔진
     - show plugins
 
 
-        ![image.png](./img/image 7.png)
+        ![image.png](./img/image7.png)
 
 
 ## 4.1.5 컴포넌트
@@ -167,7 +167,7 @@ MySQL서버에서 지원되는 스토리지 엔진
 
 ## 4.1.6 쿼리 실행 구조
 
-![image.png](./img/image 8.png)
+![image.png](./img/image8.png)
 
 ### 4.1.6.1 쿼리 파서
 
